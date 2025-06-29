@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Game </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+        }
+
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+        }
+
+        #btn1 {
+            background-color: red;
+        }
+
+        #btn2 {
+            background-color: green;
+        }
+
+        #btn3 {
+            background-color: blue;
+        }
+
+        #btn4 {
+            background-color: black;
+        }
+
+        .play {
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .play input {
+            font-size: 16px;
+            padding: 10px;
+            width: 100px;
+            height: 40px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .btns {
+            border: 1px solid #ccc;
+        }
+
+        .btnss {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Color Game</h1>
+    <p>Select a color!</p>
+    <div class="container">
+        <div>
+            <input type="button" class="btn color-box" id="btn1" onclick="btn1Click()">
+            <input type="button" class="btn color-box" id="btn2" onclick="btn2Click()">
+            <input type="button" class="btn color-box" id="btn3" onclick="btn3Click()">
+            <input type="button" class="btn color-box" id="btn4" onclick="btn4Click()">
+
+        </div>
+    </div>
+    <div class="play">
+        <form>
+            <input type="button" class="Play" value="Play" onclick="playGame()">
+        </form>
+    </div>
+    <div class="container">
+        <h2>You selected:</h2>
+        <input type="button" class="color-box btns">
+    </div>
+    <div class="container">
+        <h2>Computer Selected:</h2>
+        <input type="button" class="color-box btnss ">
+    </div>
+
+    <script>
+        let userColor = document.querySelector(".btns");
+        let btn1 = document.getElementById("#btn1");
+        let btn2 = document.getElementById("btn2");
+        let btn3 = document.getElementById("btn3");
+        let btn4 = document.getElementById("btn4");
+        let computerColor;
+        let flag = false;
+        function btn1Click() {
+            userColor.style.backgroundColor = "red";
+            flag = true;
+        }
+        function btn2Click() {
+            userColor.style.backgroundColor = "green";
+            flag = true;
+        }
+        function btn3Click() {
+            userColor.style.backgroundColor = "blue";
+            flag = true;
+        }
+        function btn4Click() {
+            userColor.style.backgroundColor = "black";
+            flag = true;
+        }
+        function playGame() {
+            if (!flag) {
+                alert("Please select a color first!");
+                return;
+            }
+            let colors = ["red", "green", "blue", "black"];
+            let shuffled = [...colors].sort(() => Math.random() - 0.5);
+            let color = shuffled[0];
+            computerColor = color;
+            document.querySelector(".btnss").style.backgroundColor = computerColor;
+
+            if (userColor.style.backgroundColor === computerColor) {
+                alert("You win!");
+            } else {
+                let c = 0;
+                // Loop to alert the user 1000 times if they lose   
+                while (c++ < 1000) { }
+                alert("You lose! Computer selected " + computerColor);
+            }
+        }
+
+
+    </script>
+
+</html>
